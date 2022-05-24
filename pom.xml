@@ -3,47 +3,63 @@
   <groupId>User-service</groupId>
   <artifactId>User-service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <parent>
+  	<groupId>org.springframework.boot</groupId>
+  	<artifactId>spring-boot-starter-parent</artifactId>
+  	<version>2.7.0</version>
+  	<relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <properties>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
+  	<start-class>com.newsfeed.user.Application</start-class>
+  </properties>
   <dependencies>
   	<dependency>
   		<groupId>org.springframework</groupId>
-  		<artifactId>spring-core</artifactId>
-  		<version>5.3.19</version>
+  		<artifactId>spring-beans</artifactId>
   	</dependency>
   	<dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-context</artifactId>
-    	<version>5.3.0</version>
-	</dependency>
-	<dependency>
-    	<groupId>org.springframework</groupId>
-    	<artifactId>spring-web</artifactId>
-    	<version>5.3.19</version>
 	</dependency>
   	<dependency>
     	<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot</artifactId>
-    	<version>2.6.7</version>
 	</dependency>
-	<dependency>
-    	<groupId>org.springframework.boot</groupId>
-    	<artifactId>spring-boot-autoconfigure</artifactId>
-    	<version>2.6.7</version>
-	</dependency>
+	    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 	<dependency>
     	<groupId>com.fasterxml.jackson.core</groupId>
     	<artifactId>jackson-databind</artifactId>
-    	<version>2.13.0</version>
 	</dependency>
 	<dependency>
 		<groupId>com.oracle.database.jdbc</groupId>
 		<artifactId>ojdbc8</artifactId>
-		<version>21.4.0.0.1</version>
 	</dependency>
 	<dependency>
 		<groupId>com.oracle.database.jdbc</groupId>
 		<artifactId>ojdbc11-production</artifactId>
-		<version>21.5.0.0</version>
 		<type>pom</type>
 	</dependency>
   </dependencies>
+  
+    <build>
+    	<resources>
+            <resource>
+                <directory>resources</directory>
+                <includes>
+                    <include>application.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+         </plugins>
+    </build>
 </project>
