@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import com.newsfeed.user.conn.DBconn;
 import com.newsfeed.user.models.Topic;
 import com.newsfeed.user.models.User;
 import com.newsfeed.user.models.UserLoginRequest;
@@ -34,12 +33,10 @@ public class UserRepo {
 	private String password;
 	
 	public Connection getConn() throws ClassNotFoundException, SQLException {
-//		Class.forName("oracle.jdbc.OracleDriver");
 		return DriverManager.getConnection(url,username, password);
 		
 	}
 	
-//	DBconn pool = DBconn.create(url, username, password);
 
 	public int createUser(User user) {
 		
@@ -100,8 +97,6 @@ public class UserRepo {
 		Connection c = null;
 		try {
 			String selectString = "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?" ;
-			System.out.println("username:" +loginRequest.getEmailId());
-			System.out.println("password:" + loginRequest.getPassword());
 			System.out.println(selectString);
 			c = getConn();
 			PreparedStatement ps = c.prepareStatement(selectString);
@@ -185,7 +180,6 @@ public class UserRepo {
 	public boolean followTopic(UserTopics userTopics) {
 		Connection c = null;
 		try {
-			System.out.println("userId:" + userTopics.getUserId());
 			String deleteString = "DELETE FROM USER_TOPIC_MAPPING WHERE USER_ID = ? AND EXISTS (SELECT * FROM USER_TOPIC_MAPPING WHERE USER_ID = ? )";
 			System.out.println(deleteString);
 			c = getConn();
